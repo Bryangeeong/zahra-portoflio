@@ -2,11 +2,12 @@ import Header from './components/Header'
 import Gallery from './components/Gallery'
 import About from './components/About'
 import Contact from './components/Contact'
+import ScrollToTop from './components/ScrollToTop'
 import './App.css'
 
 function App() {
   return (
-    <div className="app">
+    <div className="app" id="top">
       <Header />
       <main className="main-content">
         <About />
@@ -26,6 +27,7 @@ function App() {
           </a>
         </p>
       </footer>
+      <ScrollToTop />
     </div>
   )
 }

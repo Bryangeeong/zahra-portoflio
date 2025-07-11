@@ -4,7 +4,9 @@ function Header() {
   return (
     <header className="header">
       <div className="header-content">
-        <h1 className="photographer-name">Zahra Ghoncheh</h1>
+        <h1 className="photographer-name">
+          <a href="#top" className="name-link">Zahra Ghoncheh</a>
+        </h1>
         <nav className="navigation">
           <a href="#about" className="nav-link">About</a>
           <a href="#gallery" className="nav-link">Gallery</a>
