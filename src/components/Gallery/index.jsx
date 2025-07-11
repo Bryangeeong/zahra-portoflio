@@ -48,7 +48,7 @@ function Gallery() {
         </div>
         
         <div className="gallery-actions">
-          <a href="/portfolio" className="view-portfolio-btn">
+          <a href="#/portfolio" className="view-portfolio-btn">
             View Full Portfolio
           </a>
         </div>
