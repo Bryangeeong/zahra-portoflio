@@ -138,7 +138,7 @@
   transition: transform 0.3s ease;
   opacity: 0;
   transform: scale(0.9);
-  animation: fadeInScale 0.8s ease-out 2.5s forwards;
+  animation: fadeInScale 0.8s ease-out 0.5s forwards;
   border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -160,6 +160,10 @@
     text-align: center;
     min-height: auto;
     padding: 2rem 1rem;
+  }
+  
+  .about-title {
+    text-align: center;
   }
   
   .about-image {
@@ -186,15 +190,19 @@
   .rotating-text {
     min-width: auto;
     text-align: center;
+    width: 100%;
+    display: block;
   }
   
   .rotating-text.animating {
     animation: fadeInOut 2.5s infinite;
+    text-align: center;
   }
   
   .rotating-text.final {
     opacity: 1;
     transform: translateY(0);
+    text-align: center;
   }
   
   @keyframes fadeIn {

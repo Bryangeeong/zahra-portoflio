@@ -3,7 +3,7 @@ import './About.css'
 
 function About() {
   const [currentText, setCurrentText] = useState(0)
-  const texts = ['Artistic Director', 'Producer', 'Zahra Ghoncheh']
+  const texts = ['Artistic Director', 'Producer', 'Zahra']
 
   useEffect(() => {
     const interval = setInterval(() => {
