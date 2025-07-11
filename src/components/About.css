@@ -47,7 +47,7 @@
 
 .about-title {
   font-size: 3rem;
-  font-weight: 300;
+  font-weight: 700;
   color: #ffffff;
   margin-bottom: 2rem;
   letter-spacing: 1px;
@@ -153,6 +153,18 @@
   
   .about-title {
     font-size: 2rem;
+    white-space: normal;
+    width: auto;
+    border-right: none;
+    animation: none;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.5s forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
   }
   
   .about-description {
