@@ -1,9 +1,11 @@
 import { useNavigate, useLocation } from 'react-router-dom'
+import { useFilmEffects } from '../../contexts/FilmEffectsContext'
 import './Header.css'
 
 function Header() {
   const navigate = useNavigate()
   const location = useLocation()
+  const { filmEffectsEnabled, toggleFilmEffects } = useFilmEffects()
 
   const handleTitleClick = (e) => {
     e.preventDefault()
@@ -75,6 +77,13 @@ function Header() {
           >
             Contact
           </a>
+          <button 
+            onClick={toggleFilmEffects}
+            className="film-toggle"
+            title={filmEffectsEnabled ? "Disable film effects" : "Enable film effects"}
+          >
+            {filmEffectsEnabled ? "🎞️" : "📷"}
+          </button>
         </nav>
       </div>
     </header>

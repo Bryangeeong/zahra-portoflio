@@ -29,7 +29,7 @@ body {
   min-height: 100vh;
 }
 
-body::before {
+.film-effects-enabled body::before {
   content: '';
   position: fixed;
   top: 0;
@@ -48,7 +48,7 @@ body::before {
   animation: filmGrain 0.8s steps(10) infinite;
 }
 
-body::after {
+.film-effects-enabled body::after {
   content: '';
   position: fixed;
   top: 0;
@@ -56,18 +56,85 @@ body::after {
   width: 100%;
   height: 100%;
   background-image:
-    linear-gradient(90deg, transparent 0%, transparent 30%, rgba(255, 255, 255, 0.1) 30.5%, transparent 31%),
-    linear-gradient(90deg, transparent 0%, transparent 60%, rgba(255, 255, 255, 0.08) 60.2%, transparent 60.8%),
-    linear-gradient(90deg, transparent 0%, transparent 85%, rgba(255, 255, 255, 0.06) 85.1%, transparent 85.4%),
     radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.15) 2px, transparent 3px),
     radial-gradient(circle at 75% 60%, rgba(255, 255, 255, 0.12) 1px, transparent 2px),
     radial-gradient(circle at 45% 90%, rgba(255, 255, 255, 0.1) 3px, transparent 4px),
     radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.08) 1.5px, transparent 2.5px);
-  background-size: 100% 100%, 100% 100%, 100% 100%, 200px 200px, 150px 150px, 300px 300px, 180px 180px;
+  background-size: 200px 200px, 150px 150px, 300px 300px, 180px 180px;
   opacity: 0.4;
   pointer-events: none;
   z-index: 9999;
-  animation: filmDamage 12s linear infinite;
+  animation: filmDamage 6s linear infinite;
+}
+
+.film-scratches {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+.scratch-1 {
+  position: absolute;
+  top: 0;
+  left: 15%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.1) 20%, transparent 100%);
+  animation: scratch1 6s linear infinite;
+}
+
+.scratch-2 {
+  position: absolute;
+  top: 0;
+  left: 30%;
+  width: 0.5px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.08) 30%, transparent 100%);
+  animation: scratch2 8s linear infinite;
+}
+
+.scratch-3 {
+  position: absolute;
+  top: 0;
+  left: 45%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.06) 40%, transparent 100%);
+  animation: scratch3 7s linear infinite;
+}
+
+.scratch-4 {
+  position: absolute;
+  top: 0;
+  left: 60%;
+  width: 0.5px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.09) 25%, transparent 100%);
+  animation: scratch4 5s linear infinite;
+}
+
+.scratch-5 {
+  position: absolute;
+  top: 0;
+  left: 75%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.07) 35%, transparent 100%);
+  animation: scratch5 9s linear infinite;
+}
+
+.scratch-6 {
+  position: absolute;
+  top: 0;
+  left: 90%;
+  width: 0.5px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.05) 45%, transparent 100%);
+  animation: scratch6 4s linear infinite;
 }
 
 @keyframes filmGrain {
@@ -85,25 +152,129 @@ body::after {
 
 @keyframes filmDamage {
   0% { 
-    transform: translateY(0px);
+    transform: translateY(0px) translateX(0px);
+    opacity: 0;
+  }
+  3% { 
+    transform: translateY(-5px) translateX(2px);
+    opacity: 0.6;
+  }
+  6% { 
+    opacity: 0;
+  }
+  12% { 
+    transform: translateY(-8px) translateX(-1px);
     opacity: 0.4;
+  }
+  15% { 
+    opacity: 0;
+  }
+  22% { 
+    transform: translateY(-15px) translateX(1px);
+    opacity: 0.7;
   }
   25% { 
-    transform: translateY(-20px);
+    opacity: 0;
+  }
+  34% { 
+    transform: translateY(-25px) translateX(-2px);
     opacity: 0.3;
   }
-  50% { 
-    transform: translateY(-40px);
+  37% { 
+    opacity: 0;
+  }
+  45% { 
+    transform: translateY(-35px) translateX(1px);
     opacity: 0.5;
   }
-  75% { 
-    transform: translateY(-60px);
-    opacity: 0.2;
+  48% { 
+    opacity: 0;
   }
-  100% { 
-    transform: translateY(-80px);
+  58% { 
+    transform: translateY(-45px) translateX(-1px);
     opacity: 0.4;
   }
+  61% { 
+    opacity: 0;
+  }
+  70% { 
+    transform: translateY(-55px) translateX(2px);
+    opacity: 0.6;
+  }
+  73% { 
+    opacity: 0;
+  }
+  83% { 
+    transform: translateY(-65px) translateX(-1px);
+    opacity: 0.3;
+  }
+  86% { 
+    opacity: 0;
+  }
+  95% { 
+    transform: translateY(-75px) translateX(1px);
+    opacity: 0.5;
+  }
+  100% { 
+    transform: translateY(-80px) translateX(0px);
+    opacity: 0;
+  }
+}
+
+@keyframes scratch1 {
+  0% { opacity: 0; }
+  15% { opacity: 1; }
+  30% { opacity: 0; }
+  60% { opacity: 1; }
+  75% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes scratch2 {
+  0% { opacity: 1; }
+  20% { opacity: 0; }
+  45% { opacity: 1; }
+  60% { opacity: 0; }
+  85% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes scratch3 {
+  0% { opacity: 0; }
+  25% { opacity: 1; }
+  40% { opacity: 0; }
+  70% { opacity: 1; }
+  90% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes scratch4 {
+  0% { opacity: 1; }
+  30% { opacity: 0; }
+  50% { opacity: 1; }
+  65% { opacity: 0; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes scratch5 {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  35% { opacity: 0; }
+  55% { opacity: 1; }
+  70% { opacity: 0; }
+  95% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes scratch6 {
+  0% { opacity: 1; }
+  25% { opacity: 0; }
+  40% { opacity: 1; }
+  55% { opacity: 0; }
+  75% { opacity: 1; }
+  90% { opacity: 0; }
+  100% { opacity: 0; }
 }
 
 .app {

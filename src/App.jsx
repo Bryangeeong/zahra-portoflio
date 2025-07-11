@@ -1,4 +1,5 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import { FilmEffectsProvider, useFilmEffects } from './contexts/FilmEffectsContext'
 import Header from './components/Header'
 import Gallery from './components/Gallery'
 import About from './components/About'
@@ -32,18 +33,38 @@ function HomePage() {
   )
 }
 
-function App() {
+function AppContent() {
+  const { filmEffectsEnabled } = useFilmEffects()
+  
   return (
     <Router>
-      <div className="app" id="top">
+      <div className={`app ${filmEffectsEnabled ? 'film-effects-enabled' : ''}`} id="top">
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/portfolio" element={<Portfolio />} />
         </Routes>
         <ScrollToTop />
+        {filmEffectsEnabled && (
+          <div className="film-scratches">
+            <div className="scratch-1"></div>
+            <div className="scratch-2"></div>
+            <div className="scratch-3"></div>
+            <div className="scratch-4"></div>
+            <div className="scratch-5"></div>
+            <div className="scratch-6"></div>
+          </div>
+        )}
       </div>
     </Router>
+  )
+}
+
+function App() {
+  return (
+    <FilmEffectsProvider>
+      <AppContent />
+    </FilmEffectsProvider>
   )
 }
 
