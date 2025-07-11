@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap');
 
 .app {
   min-height: 100vh;
@@ -19,7 +19,7 @@ html {
 
 body {
   margin: 0;
-  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-family: 'Special Elite', 'Courier Prime', 'Courier New', monospace;
   line-height: 1.6;
   color: #ffffff;
   background: #1a1a1a;
