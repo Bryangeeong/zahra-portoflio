@@ -38,7 +38,7 @@ function About() {
       <div className="about-content">
         <div className="about-text">
           <h2 className="about-title">
-            <span className="rotating-text">
+            <span className={`rotating-text ${currentText < texts.length - 1 ? 'animating' : 'final'}`}>
               {texts[currentText]}
             </span>
           </h2>

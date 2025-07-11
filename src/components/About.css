@@ -61,7 +61,15 @@
   display: inline-block;
   min-width: 400px;
   text-align: left;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.rotating-text.animating {
+  animation: fadeInOut 2.5s infinite;
+}
+
+.rotating-text.final {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @keyframes fadeInOut {
@@ -178,6 +186,15 @@
   .rotating-text {
     min-width: auto;
     text-align: center;
+  }
+  
+  .rotating-text.animating {
+    animation: fadeInOut 2.5s infinite;
+  }
+  
+  .rotating-text.final {
+    opacity: 1;
+    transform: translateY(0);
   }
   
   @keyframes fadeIn {
