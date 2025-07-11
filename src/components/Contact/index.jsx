@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import Polaroid from './Polaroid'
 import './Contact.css'
 
 function Contact() {
   const [formStatus, setFormStatus] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showPolaroid, setShowPolaroid] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -24,6 +26,12 @@ function Contact() {
 
       if (response.ok) {
         setFormStatus('success')
+        // Trigger flash effect
+        document.body.classList.add('camera-flash')
+        setTimeout(() => {
+          document.body.classList.remove('camera-flash')
+          setShowPolaroid(true)
+        }, 200)
         form.reset()
       } else {
         setFormStatus('error')
@@ -33,6 +41,11 @@ function Contact() {
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  const handleClosePolaroid = () => {
+    setShowPolaroid(false)
+    setFormStatus('')
   }
 
   return (
@@ -70,12 +83,6 @@ function Contact() {
 
         <div className="contact-form">
           <h3 className="form-title">Send a Message</h3>
-          
-          {formStatus === 'success' && (
-            <div className="form-message success">
-              Thanks for reaching out! Your message has been received.
-            </div>
-          )}
           
           {formStatus === 'error' && (
             <div className="form-message error">
@@ -130,6 +137,11 @@ function Contact() {
           </form>
         </div>
       </div>
+      
+      <Polaroid 
+        isVisible={showPolaroid} 
+        onClose={handleClosePolaroid}
+      />
     </section>
   )
 }
