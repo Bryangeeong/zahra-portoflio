@@ -1,6 +1,6 @@
 .contact {
   padding: 6rem 0;
-  background: #f8f9fa;
+  background: #1a1a1a;
 }
 
 .contact-content {
@@ -13,14 +13,14 @@
 .contact-title {
   font-size: 3rem;
   font-weight: 300;
-  color: #333;
+  color: #ffffff;
   margin-bottom: 1rem;
   letter-spacing: 1px;
 }
 
 .contact-subtitle {
   font-size: 1.2rem;
-  color: #666;
+  color: #cccccc;
   margin-bottom: 3rem;
   line-height: 1.6;
 }
@@ -39,36 +39,36 @@
 .contact-label {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #333;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
 .contact-link {
-  color: #666;
+  color: #cccccc;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .contact-link:hover {
-  color: #333;
+  color: #ffffff;
 }
 
 .contact-text {
-  color: #666;
+  color: #cccccc;
   margin: 0;
 }
 
 .contact-form {
-  background: white;
+  background: #2a2a2a;
   padding: 3rem;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .form-title {
   font-size: 1.5rem;
   font-weight: 400;
-  color: #333;
+  color: #ffffff;
   margin-bottom: 2rem;
 }
 
@@ -86,17 +86,24 @@
 .form-textarea {
   width: 100%;
   padding: 1rem;
-  border: 2px solid #e9ecef;
+  border: 2px solid #555;
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.3s ease;
   font-family: inherit;
+  background: #1a1a1a;
+  color: #ffffff;
 }
 
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: #333;
+  border-color: #888;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #aaa;
 }
 
 .form-textarea {
@@ -105,8 +112,8 @@
 }
 
 .form-button {
-  background: #333;
-  color: white;
+  background: #ffffff;
+  color: #1a1a1a;
   border: none;
   padding: 1rem 2rem;
   border-radius: 8px;
@@ -117,7 +124,7 @@
 }
 
 .form-button:hover {
-  background: #555;
+  background: #cccccc;
 }
 
 @media (max-width: 768px) {

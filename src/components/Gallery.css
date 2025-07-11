@@ -1,6 +1,6 @@
 .gallery {
   padding: 6rem 0 4rem;
-  background: #f8f9fa;
+  background: #1a1a1a;
 }
 
 .gallery-content {
@@ -13,7 +13,7 @@
   text-align: center;
   font-size: 3rem;
   font-weight: 300;
-  color: #333;
+  color: #ffffff;
   margin-bottom: 3rem;
   letter-spacing: 1px;
 }
