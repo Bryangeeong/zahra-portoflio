@@ -19,7 +19,7 @@ function HomePage() {
         <p className="footer-text">
           Made with love ❤️ by{" "}
           <a 
-            href="https://www.linkedin.com/in/bryangeeong/" 
+            href="https://www.linkedin.com/in/bryangeeong/"
             target="_blank" 
             rel="noopener noreferrer"
             className="footer-link"
