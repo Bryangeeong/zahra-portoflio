@@ -177,14 +177,15 @@
   }
   
   .about-title {
-    font-size: 2.5rem;
-    white-space: normal;
+    font-size: 2rem;
+    white-space: nowrap;
     width: auto;
     border-right: none;
     animation: none;
     opacity: 1;
     margin-bottom: 1.5rem;
-    height: auto;
+    height: 2.5rem;
+    overflow: hidden;
   }
   
   .rotating-text {
