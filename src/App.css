@@ -15,9 +15,11 @@ html {
   scroll-behavior: smooth;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
   line-height: 1.6;
   color: #ffffff;
   background: #1a1a1a;

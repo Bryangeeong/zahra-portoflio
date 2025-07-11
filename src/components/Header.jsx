@@ -6,8 +6,8 @@ function Header() {
       <div className="header-content">
         <h1 className="photographer-name">Zahra Photography</h1>
         <nav className="navigation">
-          <a href="#gallery" className="nav-link">Gallery</a>
           <a href="#about" className="nav-link">About</a>
+          <a href="#gallery" className="nav-link">Gallery</a>
           <a href="#contact" className="nav-link">Contact</a>
         </nav>
       </div>

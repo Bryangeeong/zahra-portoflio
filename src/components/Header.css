@@ -1,12 +1,12 @@
 .header {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(10px);
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
   padding: 1rem 0;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .header-content {
@@ -21,7 +21,7 @@
 .photographer-name {
   font-size: 2rem;
   font-weight: 300;
-  color: #333;
+  color: #ffffff;
   margin: 0;
   letter-spacing: 1px;
 }
@@ -33,14 +33,14 @@
 
 .nav-link {
   text-decoration: none;
-  color: #666;
+  color: #cccccc;
   font-weight: 400;
   transition: color 0.3s ease;
   position: relative;
 }
 
 .nav-link:hover {
-  color: #333;
+  color: #ffffff;
 }
 
 .nav-link::after {
@@ -50,7 +50,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: #333;
+  background: #ffffff;
   transition: width 0.3s ease;
 }
 

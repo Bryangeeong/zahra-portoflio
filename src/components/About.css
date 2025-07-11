@@ -54,7 +54,7 @@
   overflow: hidden;
   border-right: 3px solid #ffffff;
   white-space: nowrap;
-  animation: typewriter 3s steps(11) 1s forwards, cursor-blink 1s step-end infinite;
+  animation: typewriter 1.5s steps(11) 0.5s forwards, cursor-blink 0.5s step-end infinite 2s, remove-cursor 0.1s 2s forwards;
   width: 0;
 }
 
@@ -76,6 +76,12 @@
   }
 }
 
+@keyframes remove-cursor {
+  to {
+    border-color: transparent;
+  }
+}
+
 .about-description {
   font-size: 1.1rem;
   line-height: 1.8;
@@ -87,15 +93,15 @@
 }
 
 .about-description:nth-child(3) {
-  animation-delay: 3.5s;
+  animation-delay: 2.2s;
 }
 
 .about-description:nth-child(4) {
-  animation-delay: 4s;
+  animation-delay: 2.5s;
 }
 
 .about-description:nth-child(5) {
-  animation-delay: 4.5s;
+  animation-delay: 2.8s;
 }
 
 @keyframes fadeInUp {
@@ -119,7 +125,7 @@
   transition: transform 0.3s ease;
   opacity: 0;
   transform: scale(0.9);
-  animation: fadeInScale 1s ease-out 5s forwards;
+  animation: fadeInScale 0.8s ease-out 3.2s forwards;
 }
 
 .photographer-image:hover {
