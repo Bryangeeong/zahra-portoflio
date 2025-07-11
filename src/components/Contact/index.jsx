@@ -1,6 +1,40 @@
+import { useState } from 'react'
 import './Contact.css'
 
 function Contact() {
+  const [formStatus, setFormStatus] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setFormStatus('')
+
+    const form = e.target
+    const formData = new FormData(form)
+
+    try {
+      const response = await fetch('https://formspree.io/f/mrbknroq', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json'
+        }
+      })
+
+      if (response.ok) {
+        setFormStatus('success')
+        form.reset()
+      } else {
+        setFormStatus('error')
+      }
+    } catch (error) {
+      setFormStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <section id="contact" className="contact">
       <div className="contact-content">
@@ -36,41 +70,62 @@ function Contact() {
 
         <div className="contact-form">
           <h3 className="form-title">Send a Message</h3>
-          <form className="form">
+          
+          {formStatus === 'success' && (
+            <div className="form-message success">
+              Thank you! Your message has been sent successfully.
+            </div>
+          )}
+          
+          {formStatus === 'error' && (
+            <div className="form-message error">
+              Sorry, there was an error sending your message. Please try again.
+            </div>
+          )}
+          
+          <form className="form" onSubmit={handleSubmit}>
             <div className="form-group">
               <input
                 type="text"
+                name="name"
                 placeholder="Your Name"
                 className="form-input"
                 required
+                disabled={isSubmitting}
               />
             </div>
             <div className="form-group">
               <input
                 type="email"
+                name="email"
                 placeholder="Your Email"
                 className="form-input"
                 required
+                disabled={isSubmitting}
               />
             </div>
             <div className="form-group">
               <input
                 type="text"
+                name="subject"
                 placeholder="Subject"
                 className="form-input"
                 required
+                disabled={isSubmitting}
               />
             </div>
             <div className="form-group">
               <textarea
+                name="message"
                 placeholder="Your Message"
                 className="form-textarea"
                 rows="5"
                 required
+                disabled={isSubmitting}
               ></textarea>
             </div>
-            <button type="submit" className="form-button">
-              Send Message
+            <button type="submit" className="form-button" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
           </form>
         </div>
