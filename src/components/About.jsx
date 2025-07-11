@@ -4,6 +4,15 @@ function About() {
   return (
     <section id="about" className="about">
       <div className="video-background">
+        <video 
+          className="background-video"
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+        >
+          <source src="https://res.cloudinary.com/dvalrc5nr/video/upload/w_1920,h_1080,c_fill,q_auto,f_auto/5727833-uhd_3840_2160_30fps_nvypin.mp4" type="video/mp4" />
+        </video>
         <div className="video-overlay"></div>
       </div>
       
