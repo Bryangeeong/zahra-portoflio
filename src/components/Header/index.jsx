@@ -23,10 +23,58 @@ function Header() {
           <button onClick={handleTitleClick} className="name-link">Zahra Ghoncheh</button>
         </h1>
         <nav className="navigation">
-          <a href="#about" className="nav-link">About</a>
-          <a href="#gallery" className="nav-link">Gallery</a>
+          <a 
+            href="#about" 
+            className="nav-link"
+            onClick={(e) => {
+              e.preventDefault()
+              if (location.pathname === '/') {
+                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
+              } else {
+                navigate('/')
+                setTimeout(() => {
+                  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
+                }, 100)
+              }
+            }}
+          >
+            About
+          </a>
+          <a 
+            href="#gallery" 
+            className="nav-link"
+            onClick={(e) => {
+              e.preventDefault()
+              if (location.pathname === '/') {
+                document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })
+              } else {
+                navigate('/')
+                setTimeout(() => {
+                  document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })
+                }, 100)
+              }
+            }}
+          >
+            Gallery
+          </a>
           <a href="#/portfolio" className="nav-link">Portfolio</a>
-          <a href="#contact" className="nav-link">Contact</a>
+          <a 
+            href="#contact" 
+            className="nav-link"
+            onClick={(e) => {
+              e.preventDefault()
+              if (location.pathname === '/') {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+              } else {
+                navigate('/')
+                setTimeout(() => {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+                }, 100)
+              }
+            }}
+          >
+            Contact
+          </a>
         </nav>
       </div>
     </header>
