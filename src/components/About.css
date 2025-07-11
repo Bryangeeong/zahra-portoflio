@@ -85,6 +85,10 @@
     text-align: center;
   }
   
+  .about-image {
+    order: -1;
+  }
+  
   .about-title {
     font-size: 2rem;
   }
@@ -101,7 +105,14 @@
     display: none;
   }
   
+  .video-background {
+    background-image: url('https://res.cloudinary.com/dvalrc5nr/video/upload/so_0,w_1920,h_1080,c_fill,q_auto,f_auto/5727833-uhd_3840_2160_30fps_nvypin.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
   .video-overlay {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.6);
   }
 }
