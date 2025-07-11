@@ -1,9 +1,11 @@
 .about {
   padding: 6rem 0;
-  background: #2a2a2a;
+  background: linear-gradient(180deg, #1a1a1a 0%, #202020 100%);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.9);
 }
+
 
 .video-background {
   position: absolute;
@@ -21,6 +23,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6));
 }
 
 .video-overlay {
