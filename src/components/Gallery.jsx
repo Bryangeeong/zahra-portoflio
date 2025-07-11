@@ -27,7 +27,7 @@ function Gallery() {
   return (
     <section id="gallery" className="gallery">
       <div className="gallery-content">
-        <h2 className="gallery-title">Portfolio</h2>
+        <h2 className="gallery-title">Gallery</h2>
         <div className="gallery-grid">
           {sampleImages.map((image) => (
             <div
@@ -45,6 +45,12 @@ function Gallery() {
               </div>
             </div>
           ))}
+        </div>
+        
+        <div className="gallery-actions">
+          <a href="/portfolio" className="view-portfolio-btn">
+            View Full Portfolio
+          </a>
         </div>
       </div>
 

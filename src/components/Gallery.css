@@ -72,6 +72,31 @@
   letter-spacing: 1px;
 }
 
+.gallery-actions {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.view-portfolio-btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.view-portfolio-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
 .modal {
   position: fixed;
   top: 0;

@@ -1,14 +1,15 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Gallery from './components/Gallery'
 import About from './components/About'
 import Contact from './components/Contact'
+import Portfolio from './components/Portfolio'
 import ScrollToTop from './components/ScrollToTop'
 import './App.css'
 
-function App() {
+function HomePage() {
   return (
-    <div className="app" id="top">
-      <Header />
+    <>
       <main className="main-content">
         <About />
         <Gallery />
@@ -27,8 +28,22 @@ function App() {
           </a>
         </p>
       </footer>
-      <ScrollToTop />
-    </div>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <Router>
+      <div className="app" id="top">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+        </Routes>
+        <ScrollToTop />
+      </div>
+    </Router>
   )
 }
 
