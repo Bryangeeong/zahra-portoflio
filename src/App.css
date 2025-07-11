@@ -30,3 +30,26 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.footer {
+  background: #1a1a1a;
+  padding: 2rem 0;
+  text-align: center;
+  border-top: 1px solid #333;
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.footer-link {
+  color: #cccccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+}

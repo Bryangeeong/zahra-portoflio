@@ -13,6 +13,19 @@ function App() {
         <Gallery />
         <Contact />
       </main>
+      <footer className="footer">
+        <p className="footer-text">
+          Made with love ❤️ by{" "}
+          <a 
+            href="https://www.linkedin.com/in/bryangeeong/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="footer-link"
+          >
+            Bryan Ong
+          </a>
+        </p>
+      </footer>
     </div>
   )
 }
