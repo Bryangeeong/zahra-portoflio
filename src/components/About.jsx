@@ -38,7 +38,7 @@ function About() {
         </div>
         <div className="about-image">
           <img 
-            src="/src/assets/headshot.jfif" 
+            src="https://res.cloudinary.com/dvalrc5nr/image/upload/v1752208624/headshot_raidid.jpg" 
             alt="Zahra - Photographer" 
             className="photographer-image"
           />
