@@ -34,15 +34,16 @@
 }
 
 .about-content {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 2rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 5rem;
   align-items: center;
   position: relative;
   z-index: 3;
+  min-height: 60vh;
 }
 
 .about-title {
@@ -51,42 +52,46 @@
   color: #ffffff;
   margin-bottom: 2rem;
   letter-spacing: 1px;
-  overflow: hidden;
-  border-right: 3px solid #ffffff;
-  white-space: nowrap;
-  animation: typewriter 1.5s steps(11) 0.5s forwards, cursor-blink 0.5s step-end infinite 2s, remove-cursor 0.1s 2s forwards;
-  width: 0;
+  height: 3.6rem;
+  display: flex;
+  align-items: center;
 }
 
-@keyframes typewriter {
-  from {
-    width: 0;
+.rotating-text {
+  display: inline-block;
+  min-width: 400px;
+  text-align: left;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+@keyframes fadeInOut {
+  0% { 
+    opacity: 0;
+    transform: translateY(20px);
   }
-  to {
-    width: 100%;
+  10%, 90% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% { 
+    opacity: 0;
+    transform: translateY(-20px);
   }
 }
 
-@keyframes cursor-blink {
-  from, to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: #ffffff;
-  }
-}
-
-@keyframes remove-cursor {
-  to {
-    border-color: transparent;
-  }
+.about-text {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 3rem;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .about-description {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #cccccc;
-  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #ffffff;
+  margin-bottom: 0;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.8s ease-out forwards;
@@ -118,14 +123,15 @@
 
 .photographer-image {
   width: 100%;
-  max-width: 400px;
+  max-width: 350px;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease;
   opacity: 0;
   transform: scale(0.9);
-  animation: fadeInScale 0.8s ease-out 3.2s forwards;
+  animation: fadeInScale 0.8s ease-out 2.5s forwards;
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .photographer-image:hover {
@@ -142,23 +148,36 @@
 @media (max-width: 768px) {
   .about-content {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 3rem;
     text-align: center;
+    min-height: auto;
+    padding: 2rem 1rem;
   }
   
   .about-image {
     order: -1;
-    padding-top: 2rem;
+    padding-top: 1rem;
+  }
+  
+  .about-text {
+    padding: 2rem;
+    margin: 0 1rem;
   }
   
   .about-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     white-space: normal;
     width: auto;
     border-right: none;
     animation: none;
-    opacity: 0;
-    animation: fadeIn 1s ease-out 0.5s forwards;
+    opacity: 1;
+    margin-bottom: 1.5rem;
+    height: auto;
+  }
+  
+  .rotating-text {
+    min-width: auto;
+    text-align: center;
   }
   
   @keyframes fadeIn {
@@ -168,7 +187,11 @@
   }
   
   .about-description {
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .photographer-image {
+    max-width: 280px;
   }
   
   .photographer-image {
