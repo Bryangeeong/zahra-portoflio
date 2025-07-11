@@ -30,6 +30,14 @@
   color: #ffffff;
   text-decoration: none;
   transition: color 0.3s ease;
+  background: none;
+  border: none;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  padding: 0;
 }
 
 .name-link:hover {
