@@ -73,7 +73,7 @@ function Contact() {
           
           {formStatus === 'success' && (
             <div className="form-message success">
-              Thank you! Your message has been sent successfully.
+              Thanks for reaching out! Your message has been received.
             </div>
           )}
           
