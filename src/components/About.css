@@ -70,6 +70,18 @@
 .rotating-text.final {
   opacity: 1;
   transform: translateY(0);
+  animation: finalFadeIn 1s ease-out;
+}
+
+@keyframes finalFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes fadeInOut {
@@ -204,6 +216,7 @@
     opacity: 1;
     transform: translateY(0);
     text-align: center;
+    animation: finalFadeIn 1s ease-out;
   }
   
   @keyframes fadeIn {
