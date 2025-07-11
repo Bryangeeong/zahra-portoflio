@@ -25,6 +25,7 @@ function Header() {
         <nav className="navigation">
           <a href="#about" className="nav-link">About</a>
           <a href="#gallery" className="nav-link">Gallery</a>
+          <a href="#/portfolio" className="nav-link">Portfolio</a>
           <a href="#contact" className="nav-link">Contact</a>
         </nav>
       </div>
