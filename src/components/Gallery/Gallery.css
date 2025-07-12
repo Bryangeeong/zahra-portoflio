@@ -21,6 +21,13 @@
 .gallery-carousel-container {
   position: relative;
   width: 100%;
+  /* Extended harsh drop shadow around entire carousel */
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.8),
+    0 15px 30px rgba(0, 0, 0, 0.6),
+    0 8px 16px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .gallery-grid {
@@ -28,7 +35,8 @@
   flex-direction: column;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 1rem 0;
+  padding: 0;
+  background: #000;
   /* Disable manual scrolling but allow programmatic */
   pointer-events: none;
 }
@@ -42,6 +50,13 @@
   scrollbar-width: none;
 }
 
+.gallery-images-row {
+  display: flex;
+  gap: 0;
+  padding: 0.3rem 1.5rem;
+  background: #000;
+}
+
 .gallery-item {
   position: relative;
   overflow: hidden;
@@ -52,11 +67,7 @@
   height: 400px;
   /* Re-enable clicks on gallery items */
   pointer-events: auto;
-}
-
-.gallery-images-row {
-  display: flex;
-  gap: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 /* Film strip styles */
@@ -65,14 +76,16 @@
   height: 25px;
   background: #000;
   position: relative;
+  margin: 0;
+  width: 100%;
 }
 
 .film-strip-top {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
 }
 
 .film-strip-bottom {
-  margin-top: 0.5rem;
+  margin-top: 0;
 }
 
 .film-strip-segment {
