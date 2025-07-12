@@ -319,6 +319,26 @@ body.camera-flash::before {
   }
 }
 
+/* Desktop shadow vignette effect */
+@media (min-width: 1024px) {
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(to right, 
+        rgba(0, 0, 0, 0.4) 0%, 
+        transparent 12%, 
+        transparent 88%, 
+        rgba(0, 0, 0, 0.4) 100%);
+    pointer-events: none;
+    z-index: 9995; /* Below film effects but above content */
+  }
+}
+
 #root {
   width: 100%;
   margin: 0;
