@@ -5,8 +5,6 @@ import './Gallery.css'
 
 function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAutoScrolling, setIsAutoScrolling] = useState(true)
   const [isImageLoading, setIsImageLoading] = useState(false)
   const carouselRef = useRef(null)
 
@@ -17,85 +15,53 @@ function Gallery() {
     fullSizeSrc: getFullSizeUrl(image.publicId)
   }))
 
-  // Auto-scroll functionality
+  // Create seamless infinite carousel by duplicating images
+  const infiniteImages = [
+    ...processedImages,
+    ...processedImages,
+    ...processedImages
+  ]
+
+  // Continuous smooth scrolling
   useEffect(() => {
-    if (!isAutoScrolling) return
+    if (processedImages.length === 0) return
 
-    const interval = setInterval(() => {
-      setCurrentIndex(prev => (prev + 1) % processedImages.length)
-    }, 4000) // Change image every 4 seconds
-
-    return () => clearInterval(interval)
-  }, [isAutoScrolling, processedImages.length])
-
-  // Scroll to centered image
-  useEffect(() => {
-    if (carouselRef.current) {
-      const carousel = carouselRef.current
-      const itemWidth = 320 // 300px width + 20px gap
-      const containerWidth = carousel.offsetWidth
-      const scrollPosition = (currentIndex * itemWidth) - (containerWidth / 2) + (itemWidth / 2)
-      
-      carousel.scrollTo({
-        left: scrollPosition,
-        behavior: 'smooth'
-      })
-    }
-  }, [currentIndex])
-
-  // Handle manual scroll to update current index
-  useEffect(() => {
     const carousel = carouselRef.current
     if (!carousel) return
 
-    let scrollTimeout
-    const handleScroll = () => {
-      clearTimeout(scrollTimeout)
-      scrollTimeout = setTimeout(() => {
-        const itemWidth = 320
-        const containerWidth = carousel.offsetWidth
-        const scrollLeft = carousel.scrollLeft
-        const centerPosition = scrollLeft + (containerWidth / 2)
-        const newIndex = Math.round(centerPosition / itemWidth)
-        
-        if (newIndex !== currentIndex && newIndex >= 0 && newIndex < processedImages.length) {
-          setCurrentIndex(newIndex)
-          setIsAutoScrolling(false)
-          setTimeout(() => setIsAutoScrolling(true), 8000)
-        }
-      }, 150) // Debounce for 150ms
+    const itemWidth = 320 // 300px width + 20px gap
+    const maxScroll = processedImages.length * itemWidth
+    
+    // Start from the middle section
+    carousel.scrollLeft = maxScroll
+    let scrollPosition = maxScroll
+
+    const scroll = () => {
+      scrollPosition += 1
+      
+      // Reset before reaching the end to maintain seamless loop
+      if (scrollPosition >= maxScroll * 2) {
+        scrollPosition = maxScroll
+      }
+      
+      carousel.scrollLeft = scrollPosition
     }
 
-    carousel.addEventListener('scroll', handleScroll, { passive: true })
-    return () => {
-      carousel.removeEventListener('scroll', handleScroll)
-      clearTimeout(scrollTimeout)
-    }
-  }, [currentIndex, processedImages.length])
+    const intervalId = setInterval(scroll, 16) // ~60fps
+    return () => clearInterval(intervalId)
+  }, [processedImages.length])
 
-  const goToPrevious = () => {
-    setIsAutoScrolling(false)
-    setCurrentIndex(prev => prev === 0 ? processedImages.length - 1 : prev - 1)
-    setTimeout(() => setIsAutoScrolling(true), 8000) // Resume auto-scroll after 8 seconds
-  }
 
-  const goToNext = () => {
-    setIsAutoScrolling(false)
-    setCurrentIndex(prev => (prev + 1) % processedImages.length)
-    setTimeout(() => setIsAutoScrolling(true), 8000) // Resume auto-scroll after 8 seconds
-  }
 
   const openModal = (image) => {
     setSelectedImage(image)
     setIsImageLoading(true)
-    // Prevent background scrolling
     document.body.style.overflow = 'hidden'
   }
 
   const closeModal = () => {
     setSelectedImage(null)
     setIsImageLoading(false)
-    // Restore background scrolling
     document.body.style.overflow = 'unset'
   }
 
@@ -103,7 +69,7 @@ function Gallery() {
     setIsImageLoading(false)
   }
 
-  // Cleanup: restore scrolling if component unmounts with modal open
+  // Cleanup
   useEffect(() => {
     return () => {
       document.body.style.overflow = 'unset'
@@ -115,41 +81,46 @@ function Gallery() {
       <div className="gallery-content">
         <h2 className="gallery-title">Gallery</h2>
         <div className="gallery-carousel-container">
-          <button 
-            className="carousel-arrow carousel-arrow-left" 
-            onClick={goToPrevious}
-            aria-label="Previous image"
-          >
-            ‹
-          </button>
-          
           <div className="gallery-grid" ref={carouselRef}>
-            {processedImages.map((image, index) => (
-              <div
-                key={image.id}
-                className={`gallery-item ${index === currentIndex ? 'gallery-item-active' : ''}`}
-                onClick={() => openModal(image)}
-              >
-                <img
-                  src={image.thumbnailSrc}
-                  alt={image.alt}
-                  className="gallery-image"
-                  loading="lazy"
-                />
-                <div className="gallery-overlay">
-                  <span className="gallery-view">View</span>
-                </div>
-              </div>
-            ))}
+            {/* Top film strip */}
+            <div className="film-strip film-strip-top">
+              {infiniteImages.map((_, index) => (
+                <div key={`top-${index}`} className="film-strip-segment"></div>
+              ))}
+            </div>
+            
+            {/* Images */}
+            <div className="gallery-images-row">
+              {infiniteImages.map((image, index) => {
+                const originalIndex = index % processedImages.length
+                
+                return (
+                  <div
+                    key={`${image.id}-${index}`}
+                    className="gallery-item"
+                    onClick={() => openModal(processedImages[originalIndex])}
+                  >
+                    <img
+                      src={image.thumbnailSrc}
+                      alt={image.alt}
+                      className="gallery-image"
+                      loading="lazy"
+                    />
+                    <div className="gallery-overlay">
+                      <span className="gallery-view">View</span>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+            
+            {/* Bottom film strip */}
+            <div className="film-strip film-strip-bottom">
+              {infiniteImages.map((_, index) => (
+                <div key={`bottom-${index}`} className="film-strip-segment"></div>
+              ))}
+            </div>
           </div>
-          
-          <button 
-            className="carousel-arrow carousel-arrow-right" 
-            onClick={goToNext}
-            aria-label="Next image"
-          >
-            ›
-          </button>
         </div>
         
         <div className="gallery-actions">
