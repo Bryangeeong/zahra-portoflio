@@ -46,14 +46,18 @@ function AppContent() {
         </Routes>
         <ScrollToTop />
         {filmEffectsEnabled && (
-          <div className="film-scratches">
-            <div className="scratch-1"></div>
-            <div className="scratch-2"></div>
-            <div className="scratch-3"></div>
-            <div className="scratch-4"></div>
-            <div className="scratch-5"></div>
-            <div className="scratch-6"></div>
-          </div>
+          <>
+            <div className="film-grain"></div>
+            <div className="film-dust"></div>
+            <div className="film-scratches">
+              <div className="scratch-1"></div>
+              <div className="scratch-2"></div>
+              <div className="scratch-3"></div>
+              <div className="scratch-4"></div>
+              <div className="scratch-5"></div>
+              <div className="scratch-6"></div>
+            </div>
+          </>
         )}
       </div>
     </Router>
