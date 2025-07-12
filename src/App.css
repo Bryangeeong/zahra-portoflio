@@ -37,15 +37,15 @@ body {
   width: 100%;
   height: 100%;
   background-image: 
-    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    radial-gradient(circle at 90% 60%, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 90% 60%, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 4px 4px, 6px 6px, 3px 3px, 8px 8px;
-  opacity: 0.7;
+  opacity: 0.9;
   pointer-events: none;
   z-index: 9998;
-  animation: filmGrain 0.8s steps(10) infinite;
+  animation: filmGrain 0.4s steps(8) infinite;
 }
 
 .film-effects-enabled body::after {
@@ -56,15 +56,15 @@ body {
   width: 100%;
   height: 100%;
   background-image:
-    radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.15) 2px, transparent 3px),
-    radial-gradient(circle at 75% 60%, rgba(255, 255, 255, 0.12) 1px, transparent 2px),
-    radial-gradient(circle at 45% 90%, rgba(255, 255, 255, 0.1) 3px, transparent 4px),
-    radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.08) 1.5px, transparent 2.5px);
+    radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.25) 2px, transparent 3px),
+    radial-gradient(circle at 75% 60%, rgba(255, 255, 255, 0.2) 1px, transparent 2px),
+    radial-gradient(circle at 45% 90%, rgba(255, 255, 255, 0.18) 3px, transparent 4px),
+    radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.15) 1.5px, transparent 2.5px);
   background-size: 200px 200px, 150px 150px, 300px 300px, 180px 180px;
-  opacity: 0.4;
+  opacity: 0.7;
   pointer-events: none;
   z-index: 9999;
-  animation: filmDamage 6s linear infinite;
+  animation: filmDamage 3s linear infinite;
 }
 
 .film-scratches {
@@ -83,8 +83,8 @@ body {
   left: 15%;
   width: 1px;
   height: 100%;
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.1) 20%, transparent 100%);
-  animation: scratch1 6s linear infinite;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.15) 20%, transparent 100%);
+  animation: scratch1 3s linear infinite;
 }
 
 .scratch-2 {
@@ -93,8 +93,8 @@ body {
   left: 30%;
   width: 0.5px;
   height: 100%;
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.08) 30%, transparent 100%);
-  animation: scratch2 8s linear infinite;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.12) 30%, transparent 100%);
+  animation: scratch2 4s linear infinite;
 }
 
 .scratch-3 {
@@ -103,8 +103,8 @@ body {
   left: 45%;
   width: 1px;
   height: 100%;
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.06) 40%, transparent 100%);
-  animation: scratch3 7s linear infinite;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.1) 40%, transparent 100%);
+  animation: scratch3 3.5s linear infinite;
 }
 
 .scratch-4 {
@@ -113,8 +113,8 @@ body {
   left: 60%;
   width: 0.5px;
   height: 100%;
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.09) 25%, transparent 100%);
-  animation: scratch4 5s linear infinite;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.13) 25%, transparent 100%);
+  animation: scratch4 2.5s linear infinite;
 }
 
 .scratch-5 {
@@ -123,8 +123,8 @@ body {
   left: 75%;
   width: 1px;
   height: 100%;
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.07) 35%, transparent 100%);
-  animation: scratch5 9s linear infinite;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.11) 35%, transparent 100%);
+  animation: scratch5 4.5s linear infinite;
 }
 
 .scratch-6 {
@@ -133,8 +133,8 @@ body {
   left: 90%;
   width: 0.5px;
   height: 100%;
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.05) 45%, transparent 100%);
-  animation: scratch6 4s linear infinite;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.08) 45%, transparent 100%);
+  animation: scratch6 2s linear infinite;
 }
 
 @keyframes filmGrain {
