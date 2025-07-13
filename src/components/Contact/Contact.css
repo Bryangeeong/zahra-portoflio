@@ -24,7 +24,7 @@
   position: relative;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.2) 100%);
   border: 12px solid #ffffff;
-  border-bottom: 40px solid #ffffff;
+  border-bottom: 50px solid #ffffff;
   border-radius: 4px;
   transform: rotate(-1.5deg);
   box-shadow: 
@@ -266,7 +266,7 @@
     transform: rotate(-0.8deg);
     padding: 1.5rem 1rem;
     border: 8px solid #ffffff;
-    border-bottom: 24px solid #ffffff;
+    border-bottom: 36px solid #ffffff;
   }
   
   .social-links {
