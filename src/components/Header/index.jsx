@@ -1,4 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { useFilmEffects } from '../../contexts/FilmEffectsContext'
 import './Header.css'
 
@@ -6,6 +7,26 @@ function Header() {
   const navigate = useNavigate()
   const location = useLocation()
   const { filmEffectsEnabled, toggleFilmEffects } = useFilmEffects()
+  const [showTooltip, setShowTooltip] = useState(false)
+  const [tooltipExiting, setTooltipExiting] = useState(false)
+
+  useEffect(() => {
+    // Show tooltip on page load, hide after 6 seconds
+    const timer = setTimeout(() => {
+      setShowTooltip(true)
+      const hideTimer = setTimeout(() => {
+        setTooltipExiting(true)
+        // Remove tooltip after exit animation completes
+        setTimeout(() => {
+          setShowTooltip(false)
+          setTooltipExiting(false)
+        }, 800)
+      }, 6000)
+      return () => clearTimeout(hideTimer)
+    }, 1000)
+    
+    return () => clearTimeout(timer)
+  }, [])
 
   const handleTitleClick = (e) => {
     e.preventDefault()
@@ -77,13 +98,21 @@ function Header() {
           >
             Contact
           </a>
-          <button 
-            onClick={toggleFilmEffects}
-            className="film-toggle"
-            title={filmEffectsEnabled ? "Disable film effects" : "Enable film effects"}
-          >
-            {filmEffectsEnabled ? "🎞️" : "📷"}
-          </button>
+          <div className="film-toggle-container">
+            <button 
+              onClick={toggleFilmEffects}
+              className="film-toggle"
+              title={filmEffectsEnabled ? "Disable film effects" : "Enable film effects"}
+            >
+              {filmEffectsEnabled ? "🎞️" : "📷"}
+            </button>
+            {showTooltip && (
+              <div className={`film-toggle-tooltip ${tooltipExiting ? 'exiting' : ''}`}>
+                Too much vintage? Toggle here!
+                <div className="tooltip-arrow"></div>
+              </div>
+            )}
+          </div>
         </nav>
       </div>
     </header>
