@@ -1,4 +1,5 @@
 import { useState, useEffect, memo, useMemo } from 'react'
+import { TIMING } from '../../constants'
 import './About.css'
 
 function About() {
@@ -15,10 +16,10 @@ function About() {
         }
         return next
       })
-    }, 2500)
+    }, TIMING.TEXT_ROTATION_INTERVAL)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [texts.length])
 
   return (
     <section id="about" className="about">

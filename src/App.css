@@ -1,32 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
+/* App-specific styles and film effects */
 .app {
   min-height: 100vh;
   background: #1a1a1a;
+  position: relative;
+  z-index: 2;
 }
 
 .main-content {
   padding-top: 0;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  line-height: 1.6;
-  color: #ffffff;
-  background: #1a1a1a !important;
-  position: relative;
-  display: block !important;
-  place-items: unset !important;
-  min-height: 100vh;
 }
 
 .film-grain {
@@ -370,10 +351,6 @@ body {
   100% { opacity: 1; }
 }
 
-.app {
-  position: relative;
-  z-index: 2;
-}
 
 body.camera-flash::before {
   content: '';
@@ -442,11 +419,6 @@ body.camera-flash::before {
   }
 }
 
-#root {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
 
 .footer {
   background: #1a1a1a;

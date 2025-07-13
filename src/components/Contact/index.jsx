@@ -36,7 +36,8 @@ function Contact() {
       } else {
         setFormStatus('error')
       }
-    } catch (error) {
+    } catch (err) {
+      console.error('Form submission error:', err)
       setFormStatus('error')
     } finally {
       setIsSubmitting(false)

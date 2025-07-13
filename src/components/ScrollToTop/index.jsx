@@ -1,11 +1,12 @@
 import { useState, useEffect, memo, useCallback } from 'react'
+import { THRESHOLDS, CONSTANTS, UI_CONFIG } from '../../constants'
 import './ScrollToTop.css'
 
 function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
 
   const toggleVisibility = useCallback(() => {
-    if (window.pageYOffset > 300) {
+    if (window.pageYOffset > THRESHOLDS.SCROLL_TO_TOP_THRESHOLD) {
       setIsVisible(true)
     } else {
       setIsVisible(false)
@@ -20,7 +21,7 @@ function ScrollToTop() {
   const scrollToTop = useCallback(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: CONSTANTS.SCROLL_BEHAVIOR_SMOOTH
     })
   }, [])
 
@@ -32,7 +33,7 @@ function ScrollToTop() {
           onClick={scrollToTop}
           aria-label="Scroll to top"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <svg width={UI_CONFIG.ICON_SIZE} height={UI_CONFIG.ICON_SIZE} viewBox="0 0 24 24" fill={CONSTANTS.SVG_FILL_CURRENT}>
             <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
           </svg>
         </button>

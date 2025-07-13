@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useState, useEffect, memo } from 'react'
-import { useFilmEffects } from '../../contexts/FilmEffectsContext'
+import { useFilmEffects } from '../../hooks/useFilmEffects'
+import { TIMING, CONSTANTS } from '../../constants'
 import './Header.css'
 
 function Header() {
@@ -11,7 +12,7 @@ function Header() {
   const [tooltipExiting, setTooltipExiting] = useState(false)
 
   useEffect(() => {
-    // Show tooltip on page load, hide after 6 seconds
+    // Show tooltip on page load, hide after configured duration
     const timer = setTimeout(() => {
       setShowTooltip(true)
       const hideTimer = setTimeout(() => {
@@ -20,10 +21,10 @@ function Header() {
         setTimeout(() => {
           setShowTooltip(false)
           setTooltipExiting(false)
-        }, 800)
-      }, 6000)
+        }, TIMING.TOOLTIP_EXIT_ANIMATION_DURATION)
+      }, TIMING.TOOLTIP_DISPLAY_DURATION)
       return () => clearTimeout(hideTimer)
-    }, 1000)
+    }, TIMING.TOOLTIP_INITIAL_DELAY)
     
     return () => clearTimeout(timer)
   }, [])
@@ -32,7 +33,7 @@ function Header() {
     e.preventDefault()
     if (location.pathname === '/') {
       // If on home page, just scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: CONSTANTS.SCROLL_BEHAVIOR_SMOOTH })
     } else {
       // If on another page, navigate to home
       navigate('/')
@@ -52,12 +53,12 @@ function Header() {
             onClick={(e) => {
               e.preventDefault()
               if (location.pathname === '/') {
-                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
+                document.getElementById('about')?.scrollIntoView({ behavior: CONSTANTS.SCROLL_BEHAVIOR_SMOOTH })
               } else {
                 navigate('/')
                 setTimeout(() => {
-                  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
-                }, 100)
+                  document.getElementById('about')?.scrollIntoView({ behavior: CONSTANTS.SCROLL_BEHAVIOR_SMOOTH })
+                }, TIMING.NAVIGATION_SCROLL_DELAY)
               }
             }}
           >
@@ -69,12 +70,12 @@ function Header() {
             onClick={(e) => {
               e.preventDefault()
               if (location.pathname === '/') {
-                document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })
+                document.getElementById('gallery')?.scrollIntoView({ behavior: CONSTANTS.SCROLL_BEHAVIOR_SMOOTH })
               } else {
                 navigate('/')
                 setTimeout(() => {
-                  document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })
-                }, 100)
+                  document.getElementById('gallery')?.scrollIntoView({ behavior: CONSTANTS.SCROLL_BEHAVIOR_SMOOTH })
+                }, TIMING.NAVIGATION_SCROLL_DELAY)
               }
             }}
           >
@@ -87,12 +88,12 @@ function Header() {
             onClick={(e) => {
               e.preventDefault()
               if (location.pathname === '/') {
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+                document.getElementById('contact')?.scrollIntoView({ behavior: CONSTANTS.SCROLL_BEHAVIOR_SMOOTH })
               } else {
                 navigate('/')
                 setTimeout(() => {
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-                }, 100)
+                  document.getElementById('contact')?.scrollIntoView({ behavior: CONSTANTS.SCROLL_BEHAVIOR_SMOOTH })
+                }, TIMING.NAVIGATION_SCROLL_DELAY)
               }
             }}
           >

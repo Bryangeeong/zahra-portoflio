@@ -1,5 +1,6 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
-import { FilmEffectsProvider, useFilmEffects } from './contexts/FilmEffectsContext'
+import { FilmEffectsProvider } from './contexts/FilmEffectsContext'
+import { useFilmEffects } from './hooks/useFilmEffects'
 import Header from './components/Header'
 import Gallery from './components/Gallery'
 import About from './components/About'

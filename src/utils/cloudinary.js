@@ -1,12 +1,14 @@
+import { CLOUDINARY, IMAGE_DIMENSIONS } from '../constants'
+
 // Cloudinary configuration
-const CLOUD_NAME = 'dvalrc5nr'
+const CLOUD_NAME = CLOUDINARY.CLOUD_NAME
 const BASE_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload`
 
 // Helper function to generate optimized image URLs
 export const getOptimizedImageUrl = (publicId, options = {}) => {
   const {
-    width = 400,
-    height = 600,
+    width = IMAGE_DIMENSIONS.DEFAULT_WIDTH,
+    height = IMAGE_DIMENSIONS.DEFAULT_HEIGHT,
     crop = 'fill',
     quality = 'auto',
     format = 'auto'
@@ -32,8 +34,8 @@ export const getOptimizedImageUrl = (publicId, options = {}) => {
 // Helper for thumbnail URLs
 export const getThumbnailUrl = (publicId) => {
   return getOptimizedImageUrl(publicId, {
-    width: 300,
-    height: 400,
+    width: IMAGE_DIMENSIONS.THUMBNAIL_WIDTH,
+    height: IMAGE_DIMENSIONS.THUMBNAIL_HEIGHT,
     crop: 'fill',
     quality: 'auto',
     format: 'auto'
@@ -43,8 +45,8 @@ export const getThumbnailUrl = (publicId) => {
 // Helper for full-size modal URLs
 export const getFullSizeUrl = (publicId) => {
   return getOptimizedImageUrl(publicId, {
-    width: 1200,
-    height: 1600,
+    width: IMAGE_DIMENSIONS.FULL_SIZE_WIDTH,
+    height: IMAGE_DIMENSIONS.FULL_SIZE_HEIGHT,
     crop: 'fit',
     quality: 'auto',
     format: 'auto'
