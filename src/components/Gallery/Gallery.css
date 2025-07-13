@@ -39,6 +39,9 @@
   background: #000;
   /* Disable manual scrolling but allow programmatic */
   pointer-events: none;
+  /* Prevent touch interactions completely */
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
 }
 
 .gallery-grid::-webkit-scrollbar {
@@ -80,6 +83,14 @@
       0 15px 30px rgba(0, 0, 0, 0.7),
       0 8px 15px rgba(0, 0, 0, 0.5),
       0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .gallery-grid {
+    /* Extra mobile touch prevention */
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
 }
 

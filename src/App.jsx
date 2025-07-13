@@ -57,6 +57,7 @@ function AppContent() {
               <div className="scratch-5"></div>
               <div className="scratch-6"></div>
             </div>
+            <div className="film-flicker"></div>
           </>
         )}
       </div>
