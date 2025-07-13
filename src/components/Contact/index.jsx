@@ -1,4 +1,5 @@
 import { useState, memo } from 'react'
+import { URLS, TIMING, CONSTANTS } from '../../constants'
 import Polaroid from './Polaroid'
 import './Contact.css'
 
@@ -16,11 +17,11 @@ function Contact() {
     const formData = new FormData(form)
 
     try {
-      const response = await fetch('https://formspree.io/f/mrbknroq', {
+      const response = await fetch(URLS.CONTACT_FORM_ENDPOINT, {
         method: 'POST',
         body: formData,
         headers: {
-          Accept: 'application/json'
+          Accept: CONSTANTS.CONTENT_TYPE_JSON
         }
       })
 
@@ -31,7 +32,7 @@ function Contact() {
         setTimeout(() => {
           document.body.classList.remove('camera-flash')
           setShowPolaroid(true)
-        }, 200)
+        }, TIMING.CAMERA_FLASH_DURATION)
         form.reset()
       } else {
         setFormStatus('error')
