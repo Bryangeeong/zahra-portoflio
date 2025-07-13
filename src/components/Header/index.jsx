@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 import { useFilmEffects } from '../../contexts/FilmEffectsContext'
 import './Header.css'
 
@@ -119,4 +119,4 @@ function Header() {
   )
 }
 
-export default Header
+export default memo(Header)

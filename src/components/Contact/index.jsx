@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import Polaroid from './Polaroid'
 import './Contact.css'
 
@@ -146,4 +146,4 @@ function Contact() {
   )
 }
 
-export default Contact
+export default memo(Contact)

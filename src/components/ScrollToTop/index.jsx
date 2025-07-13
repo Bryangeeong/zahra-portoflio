@@ -1,29 +1,28 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo, useCallback } from 'react'
 import './ScrollToTop.css'
 
 function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
 
-  useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true)
-      } else {
-        setIsVisible(false)
-      }
+  const toggleVisibility = useCallback(() => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true)
+    } else {
+      setIsVisible(false)
     }
-
-    window.addEventListener('scroll', toggleVisibility)
-
-    return () => window.removeEventListener('scroll', toggleVisibility)
   }, [])
 
-  const scrollToTop = () => {
+  useEffect(() => {
+    window.addEventListener('scroll', toggleVisibility)
+    return () => window.removeEventListener('scroll', toggleVisibility)
+  }, [toggleVisibility])
+
+  const scrollToTop = useCallback(() => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     })
-  }
+  }, [])
 
   return (
     <>
@@ -42,4 +41,4 @@ function ScrollToTop() {
   )
 }
 
-export default ScrollToTop
+export default memo(ScrollToTop)

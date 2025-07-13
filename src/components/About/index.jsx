@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo, useMemo } from 'react'
 import './About.css'
 
 function About() {
   const [currentText, setCurrentText] = useState(0)
-  const texts = ['Artistic Director', 'Producer', 'Zahra']
+  const texts = useMemo(() => ['Artistic Director', 'Producer', 'Zahra'], [])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -58,4 +58,4 @@ function About() {
   )
 }
 
-export default About
+export default memo(About)

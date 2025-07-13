@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, memo, useMemo, useCallback } from 'react'
 import { galleryImages } from '../../data/galleryImages'
 import { getThumbnailUrl, getFullSizeUrl } from '../../utils/cloudinary'
 import './Gallery.css'
@@ -9,18 +9,20 @@ function Gallery() {
   const carouselRef = useRef(null)
 
   // Process gallery images with Cloudinary URLs
-  const processedImages = galleryImages.map(image => ({
-    ...image,
-    thumbnailSrc: getThumbnailUrl(image.publicId),
-    fullSizeSrc: getFullSizeUrl(image.publicId)
-  }))
+  const processedImages = useMemo(() => 
+    galleryImages.map(image => ({
+      ...image,
+      thumbnailSrc: getThumbnailUrl(image.publicId),
+      fullSizeSrc: getFullSizeUrl(image.publicId)
+    })), []
+  )
 
   // Create seamless infinite carousel by duplicating images
-  const infiniteImages = [
+  const infiniteImages = useMemo(() => [
     ...processedImages,
     ...processedImages,
     ...processedImages
-  ]
+  ], [processedImages])
 
   // Continuous smooth scrolling
   useEffect(() => {
@@ -35,6 +37,7 @@ function Gallery() {
     // Start from the middle section
     carousel.scrollLeft = maxScroll
     let scrollPosition = maxScroll
+    let animationId
 
     const scroll = () => {
       scrollPosition += 1
@@ -45,25 +48,34 @@ function Gallery() {
       }
       
       carousel.scrollLeft = scrollPosition
+      
+      // Request next frame for smooth animation
+      animationId = requestAnimationFrame(scroll)
     }
 
-    const intervalId = setInterval(scroll, 16) // ~60fps
-    return () => clearInterval(intervalId)
+    // Start the animation loop
+    animationId = requestAnimationFrame(scroll)
+    
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId)
+      }
+    }
   }, [processedImages.length])
 
 
 
-  const openModal = (image) => {
+  const openModal = useCallback((image) => {
     setSelectedImage(image)
     setIsImageLoading(true)
     document.body.style.overflow = 'hidden'
-  }
+  }, [])
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setSelectedImage(null)
     setIsImageLoading(false)
     document.body.style.overflow = 'unset'
-  }
+  }, [])
 
   const handleImageLoad = () => {
     setIsImageLoading(false)
@@ -155,4 +167,4 @@ function Gallery() {
   )
 }
 
-export default Gallery
+export default memo(Gallery)

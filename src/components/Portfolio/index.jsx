@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import './Portfolio.css'
 
 function Portfolio() {
@@ -18,4 +19,4 @@ function Portfolio() {
   )
 }
 
-export default Portfolio
+export default memo(Portfolio)
