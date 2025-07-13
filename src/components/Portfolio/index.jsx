@@ -1,16 +1,25 @@
-import { useState, useEffect, useRef, memo } from 'react'
+import { useState, useEffect, useRef, memo, useMemo } from 'react'
+import { getThumbnailUrl, getFullSizeUrl } from '../../utils/cloudinary'
 import './Portfolio.css'
 
 function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [portfolioImages, setPortfolioImages] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [displayedImages, setDisplayedImages] = useState([])
+  const [page, setPage] = useState(1)
+  const [selectedImage, setSelectedImage] = useState(null)
+  const [isImageLoading, setIsImageLoading] = useState(false)
   const dropdownRef = useRef(null)
+  
+  const IMAGES_PER_PAGE = 12
 
   const categories = {
     all: 'Photography',
     landscape: 'Landscape',
-    events: 'Events', 
-    portraits: 'Portraits'
+    event: 'Events', 
+    portrait: 'Portraits'
   }
 
   const isSubcategory = (key) => key !== 'all'
@@ -19,6 +28,64 @@ function Portfolio() {
     setSelectedCategory(category)
     setIsDropdownOpen(false)
   }
+
+  // Load portfolio images
+  useEffect(() => {
+    const loadPortfolioImages = async () => {
+      try {
+        const { portfolioImages } = await import('../../data/portfolioImages.js')
+        setPortfolioImages(portfolioImages)
+      } catch (error) {
+        console.error('Error loading portfolio images:', error)
+        setPortfolioImages([])
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    loadPortfolioImages()
+  }, [])
+
+  // Filter images based on selected category
+  const filteredImages = useMemo(() => {
+    if (selectedCategory === 'all') {
+      return portfolioImages
+    }
+    return portfolioImages.filter(image => 
+      image.tags.includes(selectedCategory)
+    )
+  }, [portfolioImages, selectedCategory])
+
+  // Reset pagination when category changes
+  useEffect(() => {
+    setPage(1)
+    setDisplayedImages(filteredImages.slice(0, IMAGES_PER_PAGE))
+  }, [filteredImages])
+
+  // Load more images for infinite scroll
+  const loadMoreImages = () => {
+    const nextPage = page + 1
+    const startIndex = (nextPage - 1) * IMAGES_PER_PAGE
+    const endIndex = startIndex + IMAGES_PER_PAGE
+    const newImages = filteredImages.slice(startIndex, endIndex)
+    
+    if (newImages.length > 0) {
+      setDisplayedImages(prev => [...prev, ...newImages])
+      setPage(nextPage)
+    }
+  }
+
+  // Infinite scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000) {
+        loadMoreImages()
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [page, filteredImages])
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -30,6 +97,29 @@ function Portfolio() {
 
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const openModal = (image) => {
+    setSelectedImage(image)
+    setIsImageLoading(true)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeModal = () => {
+    setSelectedImage(null)
+    setIsImageLoading(false)
+    document.body.style.overflow = 'unset'
+  }
+
+  const handleImageLoad = () => {
+    setIsImageLoading(false)
+  }
+
+  // Cleanup
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
   }, [])
 
   return (
@@ -68,10 +158,58 @@ function Portfolio() {
           </div>
         </div>
         
-        {/* Placeholder for full portfolio content */}
-        <div className="portfolio-placeholder">
-          <p>Portfolio gallery for {categories[selectedCategory].toLowerCase()} coming soon...</p>
-        </div>
+        {loading ? (
+          <div className="portfolio-loading">
+            <p>Loading portfolio...</p>
+          </div>
+        ) : displayedImages.length > 0 ? (
+          <div className="portfolio-gallery">
+            {displayedImages.map((image) => (
+              <div
+                key={image.id}
+                className="portfolio-item"
+                onClick={() => openModal(image)}
+              >
+                <img
+                  src={getThumbnailUrl(image.publicId)}
+                  alt={`Portfolio image - ${image.tags.join(', ')}`}
+                  className="portfolio-image"
+                  loading="lazy"
+                />
+                <div className="portfolio-overlay">
+                  <span className="portfolio-view">View</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="portfolio-empty">
+            <p>No images found for {categories[selectedCategory].toLowerCase()}.</p>
+            <p>Try running <code>npm run generate-portfolio</code> to fetch the latest images.</p>
+          </div>
+        )}
+        
+        {selectedImage && (
+          <div className="modal" onClick={closeModal}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <button className="modal-close" onClick={closeModal}>×</button>
+              
+              {isImageLoading && (
+                <div className="modal-spinner">
+                  <div className="spinner"></div>
+                </div>
+              )}
+              
+              <img
+                src={getFullSizeUrl(selectedImage.publicId)}
+                alt={`Portfolio image - ${selectedImage.tags.join(', ')}`}
+                className={`modal-image ${isImageLoading ? 'modal-image-loading' : ''}`}
+                onLoad={handleImageLoad}
+                onError={() => setIsImageLoading(false)}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
