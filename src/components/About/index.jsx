@@ -30,7 +30,7 @@ function About() {
           loop 
           playsInline
         >
-          <source src="https://res.cloudinary.com/dvalrc5nr/video/upload/w_1920,h_1080,c_fill,q_auto,f_auto/5727833-uhd_3840_2160_30fps_nvypin.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/dvalrc5nr/video/upload/w_1920,h_1080,c_fill,q_auto,f_auto/v1752381348/5729409-hd_1920_1080_30fps_sftvzr.mp4" type="video/mp4" />
         </video>
         <div className="video-overlay"></div>
       </div>
