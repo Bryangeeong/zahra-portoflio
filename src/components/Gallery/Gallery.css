@@ -39,8 +39,8 @@
   background: #000;
   /* Disable manual scrolling but allow programmatic */
   pointer-events: none;
-  /* Prevent touch interactions completely */
-  touch-action: none;
+  /* Prevent horizontal touch interactions only */
+  touch-action: pan-y pinch-zoom;
   -webkit-overflow-scrolling: none;
 }
 
@@ -86,8 +86,8 @@
   }
   
   .gallery-grid {
-    /* Extra mobile touch prevention */
-    touch-action: none;
+    /* Prevent horizontal touch interactions only */
+    touch-action: pan-y pinch-zoom;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     user-select: none;
