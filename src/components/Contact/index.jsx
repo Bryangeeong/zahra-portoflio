@@ -133,9 +133,11 @@ function Contact() {
                 disabled={isSubmitting}
               ></textarea>
             </div>
-            <button type="submit" className="form-button" disabled={isSubmitting}>
-              {isSubmitting ? 'Sending...' : 'Send Message'}
-            </button>
+            <div className="form-button-container">
+              <button type="submit" className="form-button" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </button>
+            </div>
           </form>
         </div>
       </div>
