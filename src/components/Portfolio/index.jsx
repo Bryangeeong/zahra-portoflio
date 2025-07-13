@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, memo, useMemo } from 'react'
+import { useState, useEffect, useRef, memo, useMemo, useCallback } from 'react'
 import { getThumbnailUrl, getFullSizeUrl } from '../../utils/cloudinary'
 import './Portfolio.css'
 
@@ -11,6 +11,7 @@ function Portfolio() {
   const [page, setPage] = useState(1)
   const [selectedImage, setSelectedImage] = useState(null)
   const [isImageLoading, setIsImageLoading] = useState(false)
+  const [loadedImages, setLoadedImages] = useState(new Set())
   const dropdownRef = useRef(null)
   
   const IMAGES_PER_PAGE = 12
@@ -27,6 +28,8 @@ function Portfolio() {
   const handleCategoryChange = (category) => {
     setSelectedCategory(category)
     setIsDropdownOpen(false)
+    
+    // Don't reset loaded images - let them persist to avoid race conditions
   }
 
   // Load portfolio images
@@ -115,6 +118,11 @@ function Portfolio() {
     setIsImageLoading(false)
   }
 
+  const handlePortfolioImageLoad = (imageId) => {
+    setLoadedImages(prev => new Set([...prev, imageId]))
+  }
+
+
   // Cleanup
   useEffect(() => {
     return () => {
@@ -164,23 +172,34 @@ function Portfolio() {
           </div>
         ) : displayedImages.length > 0 ? (
           <div className="portfolio-gallery">
-            {displayedImages.map((image) => (
-              <div
-                key={image.id}
-                className="portfolio-item"
-                onClick={() => openModal(image)}
-              >
-                <img
-                  src={getThumbnailUrl(image.publicId)}
-                  alt={`Portfolio image - ${image.tags.join(', ')}`}
-                  className="portfolio-image"
-                  loading="lazy"
-                />
-                <div className="portfolio-overlay">
-                  <span className="portfolio-view">View</span>
+            {displayedImages.map((image, index) => {
+              const isImageLoaded = loadedImages.has(image.id)
+              return (
+                <div
+                  key={image.id}
+                  className="portfolio-item"
+                  onClick={() => openModal(image)}
+                  style={{
+                    animationDelay: `${index * 0.1}s`
+                  }}
+                >
+                  {!isImageLoaded && (
+                    <div className="portfolio-skeleton" />
+                  )}
+                  <img
+                    src={getThumbnailUrl(image.publicId)}
+                    alt={`Portfolio image - ${image.tags.join(', ')}`}
+                    className={`portfolio-image ${isImageLoaded ? 'loaded' : ''}`}
+                    loading="lazy"
+                    onLoad={() => handlePortfolioImageLoad(image.id)}
+                    onError={() => handlePortfolioImageLoad(image.id)}
+                  />
+                  <div className="portfolio-overlay">
+                    <span className="portfolio-view">View</span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         ) : (
           <div className="portfolio-empty">
