@@ -53,12 +53,11 @@ function Contact() {
   return (
     <section id="contact" className="contact">
       <div className="contact-content">
-        <h2 className="contact-title">Get In Touch</h2>
-        <p className="contact-subtitle">
-          Ready to capture your special moments? Let's discuss your photography needs.
-        </p>
+        <h2 className="contact-title">Ready to capture your special moments?</h2>
         
-        <div className="social-links">
+        <div className="social-section">
+          <h3 className="social-heading">Here are my socials!</h3>
+          <div className="social-links">
           <a 
             href="https://www.instagram.com/zaragh_photo/" 
             target="_blank" 
@@ -81,10 +80,11 @@ function Contact() {
             </svg>
             LinkedIn
           </a>
+          </div>
         </div>
 
         <div className="contact-form">
-          <h3 className="form-title">Send a Message</h3>
+          <h3 className="form-title">Or drop me a message!</h3>
           
           {formStatus === 'error' && (
             <div className="form-message error">
