@@ -8,26 +8,6 @@ function Header() {
   const navigate = useNavigate()
   const location = useLocation()
   const { filmEffectsEnabled, toggleFilmEffects } = useFilmEffects()
-  const [showTooltip, setShowTooltip] = useState(false)
-  const [tooltipExiting, setTooltipExiting] = useState(false)
-
-  useEffect(() => {
-    // Show tooltip on page load, hide after configured duration
-    const timer = setTimeout(() => {
-      setShowTooltip(true)
-      const hideTimer = setTimeout(() => {
-        setTooltipExiting(true)
-        // Remove tooltip after exit animation completes
-        setTimeout(() => {
-          setShowTooltip(false)
-          setTooltipExiting(false)
-        }, TIMING.TOOLTIP_EXIT_ANIMATION_DURATION)
-      }, TIMING.TOOLTIP_DISPLAY_DURATION)
-      return () => clearTimeout(hideTimer)
-    }, TIMING.TOOLTIP_INITIAL_DELAY)
-    
-    return () => clearTimeout(timer)
-  }, [])
 
   const handleTitleClick = (e) => {
     e.preventDefault()
@@ -107,12 +87,6 @@ function Header() {
             >
               {filmEffectsEnabled ? "🎞️" : "📷"}
             </button>
-            {showTooltip && (
-              <div className={`film-toggle-tooltip ${tooltipExiting ? 'exiting' : ''}`}>
-                Too much vintage? Toggle here!
-                <div className="tooltip-arrow"></div>
-              </div>
-            )}
           </div>
         </nav>
       </div>

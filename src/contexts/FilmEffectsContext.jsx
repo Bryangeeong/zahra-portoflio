@@ -3,7 +3,7 @@ import { createContext, useState } from 'react'
 export const FilmEffectsContext = createContext()
 
 export const FilmEffectsProvider = ({ children }) => {
-  const [filmEffectsEnabled, setFilmEffectsEnabled] = useState(true)
+  const [filmEffectsEnabled, setFilmEffectsEnabled] = useState(false)
 
   const toggleFilmEffects = () => {
     setFilmEffectsEnabled(prev => !prev)
