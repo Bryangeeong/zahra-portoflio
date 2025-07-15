@@ -32,6 +32,11 @@ function Portfolio() {
     // Don't reset loaded images - let them persist to avoid race conditions
   }
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   // Load portfolio images
   useEffect(() => {
     const loadPortfolioImages = async () => {
